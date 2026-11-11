@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://coe37lp7carvm"]
+
+[ext_resource type="Script" uid="uid://cai5jyhn6itm0" path="res://Scripts/label.gd" id="1_htrw0"]
+[ext_resource type="Script" uid="uid://dpssy7d4ioxp" path="res://Scripts/main_money_balance_game.gd" id="1_iv5fv"]
+[ext_resource type="Texture2D" uid="uid://d0qf1xxey0cps" path="res://Images/Coin Asset.png" id="2_4g4xo"]
+[ext_resource type="AudioStream" uid="uid://5ujs0h7531ra" path="res://Sounds/coin_sounds.wav" id="3_ulty6"]
+[ext_resource type="Script" uid="uid://bqbjlc3y0jeil" path="res://Scripts/audio_stream_player_2d.gd" id="4_iv5fv"]
+[ext_resource type="Script" uid="uid://dp7p5gubjv5du" path="res://Scenes/character_body_2d.gd" id="6_5lrje"]
+[ext_resource type="Texture2D" uid="uid://dti4rjni8vmk4" path="res://Images/piggybanksprite.png" id="7_xnkir"]
+[ext_resource type="Texture2D" uid="uid://ctm456jgyf60x" path="res://Images/subtract_money_buttons.png" id="8_xnkir"]
+[ext_resource type="AudioStream" uid="uid://1fqagvpxe1tc" path="res://Sounds/MIA.wav" id="9_8clim"]
+[ext_resource type="Script" uid="uid://0rcjfpuuwbt7" path="res://Scenes/bg_sound.gd" id="10_cqnaq"]
+
+[node name="Container" type="Control" unique_id=123736212]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iv5fv")
+
+[node name="Label" type="Label" parent="." unique_id=1856420234]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 40
+script = ExtResource("1_htrw0")
+
+[node name="Coin Clicker" type="Button" parent="." unique_id=2003144456]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -108.0
+offset_top = -108.0
+grow_horizontal = 0
+grow_vertical = 0
+icon = ExtResource("2_4g4xo")
+flat = true
+icon_alignment = 1
+
+[node name="Coin_effect" type="AudioStreamPlayer2D" parent="." unique_id=114858781]
+stream = ExtResource("3_ulty6")
+script = ExtResource("4_iv5fv")
+
+[node name="Quit_button" type="Button" parent="." unique_id=1865334291]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 30
+text = "Quit?"
+
+[node name="Potato" type="CharacterBody2D" parent="." unique_id=1683728182]
+script = ExtResource("6_5lrje")
+
+[node name="Sprite2D" type="Sprite2D" parent="Potato" unique_id=558489160]
+scale = Vector2(2, 2)
+texture = ExtResource("7_xnkir")
+
+[node name="Reduce_money" type="Button" parent="." unique_id=1916961313]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+offset_right = 8.0
+grow_vertical = 0
+icon = ExtResource("8_xnkir")
+
+[node name="bg_sound" type="AudioStreamPlayer2D" parent="." unique_id=1004021474]
+position = Vector2(0, 540)
+stream = ExtResource("9_8clim")
+volume_db = 4.0
+script = ExtResource("10_cqnaq")
+
+[connection signal="pressed" from="Coin Clicker" to="Label" method="_on_coin_clicker_pressed"]
+[connection signal="pressed" from="Coin Clicker" to="Coin_effect" method="_on_coin_clicker_pressed"]
+[connection signal="pressed" from="Coin Clicker" to="Potato" method="_on_coin_clicker_pressed"]
+[connection signal="pressed" from="Quit_button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Reduce_money" to="Label" method="_on_reduce_money_pressed"]
+[connection signal="pressed" from="Reduce_money" to="Potato" method="_on_reduce_money_pressed"]

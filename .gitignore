@@ -1,0 +1,3 @@
+# Godot 4.x ignored files
+.godot/
+*.translation
